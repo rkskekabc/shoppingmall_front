@@ -13,9 +13,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cafe24.shoppingmall_front.dto.CategoryForm;
+import com.cafe24.shoppingmall_front.dto.OptionChildForm;
+import com.cafe24.shoppingmall_front.dto.OptionDetailInfoDto;
+import com.cafe24.shoppingmall_front.dto.OptionDetailInfoDtoForm;
+import com.cafe24.shoppingmall_front.dto.OptionParentForm;
 import com.cafe24.shoppingmall_front.service.AdminService;
 import com.cafe24.shoppingmall_front.vo.CategoryVo;
+import com.cafe24.shoppingmall_front.vo.OptionChildVo;
+import com.cafe24.shoppingmall_front.vo.OptionParentVo;
 import com.cafe24.shoppingmall_front.vo.ProductVo;
+import com.google.gson.Gson;
 
 @Controller
 @RequestMapping("/admin")
@@ -29,7 +36,8 @@ public class AdminController {
 	}
 	
 	@GetMapping({"", "/product"})
-	public String productList(Model model) {
+	public String productList(@RequestParam(required=false) String result, Model model) {
+		model.addAttribute("result", result);
 		model.addAttribute("list", adminService.getProductList());
 		return "admin/productlist";
 	}
@@ -62,10 +70,10 @@ public class AdminController {
 		return "admin/category";
 	}
 	
-	@GetMapping("/childcategory/{no}")
-	public String categoryList(@PathVariable Long no, Model model) {
+	@GetMapping("/childcategory/{parentNo}")
+	public String categoryChildList(@PathVariable Long parentNo, Model model) {
 		CategoryForm categoryForm = adminService.getCategorySet();
-		CategoryVo vo = adminService.getCategoryByNo(no);
+		CategoryVo vo = adminService.getCategoryByNo(parentNo);
 		List<CategoryVo> categoryList = adminService.getCategory();
 		
 		model.addAttribute("vo", vo);
@@ -77,5 +85,65 @@ public class AdminController {
 	@PostMapping("/category")
 	public String insertCategory(@ModelAttribute("categoryForm") CategoryForm categoryForm) {
 		return "redirect:/admin/category?result=" + adminService.insertCategory(categoryForm.getCategories());
+	}
+	
+	@GetMapping("/productoption")
+	public String optionParentList(@RequestParam(required=false) String result, Model model) {
+		OptionParentForm optionParentForm = adminService.getOptionParentSet();
+		List<OptionParentVo> optionParentList = adminService.getOptionParent();
+		
+		model.addAttribute("result", result);
+		model.addAttribute("optionParentForm", optionParentForm);
+		model.addAttribute("optionParentList", optionParentList);
+		return "admin/optionparent";
+	}
+	
+	@PostMapping("/optionparent")
+	public String insertOptionParent(@ModelAttribute("optionParentForm") OptionParentForm optionParentForm) {
+		return "redirect:/admin/productoption?result=" + adminService.insertOptionParent(optionParentForm.getOptionParents());
+	}
+	
+	@GetMapping("/optionchild/{parentNo}")
+	public String optionChildList(@PathVariable Long parentNo, Model model) {
+		OptionChildForm optionChildForm = adminService.getOptionChildSet();
+		OptionParentVo vo = adminService.getOptionParentByNo(parentNo);
+		List<OptionChildVo> optionChildList = adminService.getOptionChild(parentNo);
+		
+		model.addAttribute("vo", vo);
+		model.addAttribute("optionChildForm", optionChildForm);
+		model.addAttribute("optionChildList", optionChildList);
+		return "admin/optionchild";
+	}
+	
+	@PostMapping("/optionchild")
+	public String insertOptionChild(@ModelAttribute("optionChildForm") OptionChildForm optionChildForm) {
+		return "redirect:/admin/productoption?result=" + adminService.insertOptionChild(optionChildForm.getOptionChilds());
+	}
+
+	@GetMapping("/optiondetail/{productNo}")
+	public String optionDetailList(@PathVariable Long productNo, Model model) {
+		List<CategoryVo> parentCategories = adminService.getCategory();
+		List<CategoryVo> childCategories = adminService.getChildCategory();
+		List<OptionParentVo> optionParents = adminService.getOptionParent();
+		List<OptionChildVo> optionChilds = adminService.getOptionChild();
+		
+		OptionDetailInfoDtoForm optionDetailInfoDtoForm = adminService.getOptionDetailInfoDtoSet();
+		ProductVo vo = adminService.getProduct(productNo);
+		List<OptionDetailInfoDto> optionDetailInfoDtoList = adminService.getOptionDetailInfoDto(productNo);
+
+		Gson gson = new Gson();
+		model.addAttribute("vo", vo);
+		model.addAttribute("parentCategories", parentCategories);
+		model.addAttribute("childCategories", gson.toJson(childCategories));
+		model.addAttribute("optionParents", optionParents);
+		model.addAttribute("optionChilds", gson.toJson(optionChilds));
+		model.addAttribute("optionDetailInfoDtoForm", optionDetailInfoDtoForm);
+		model.addAttribute("optionDetailInfoDtoList", optionDetailInfoDtoList);
+		return "admin/optiondetail";
+	}
+	
+	@PostMapping("/optiondetail")
+	public String insertOptionDetail(@ModelAttribute("optionDetailInfoDtoForm") OptionDetailInfoDtoForm optionDetailInfoDtoForm) {
+		return "redirect:/admin/product?result=" + adminService.insertOptionDetail(optionDetailInfoDtoForm.getOptionDetailInfoDtos());
 	}
 }

@@ -1,5 +1,7 @@
 package com.cafe24.shoppingmall_front.vo;
 
+import com.cafe24.shoppingmall_front.dto.OptionDetailInfoDto;
+
 public class OptionDetailVo {
 	private Long no;
 	private Long productNo;
@@ -50,4 +52,14 @@ public class OptionDetailVo {
 				+ "]";
 	}
 	
+	public static OptionDetailVo of(OptionDetailInfoDto dto) {
+		OptionDetailVo vo = new OptionDetailVo();
+		vo.setProductNo(dto.getProductNo());
+		vo.setCategoryNo(dto.getCategoryNo());
+		vo.setOptionChildNo1(dto.getOptionChildNo1());
+		vo.setOptionChildNo2(dto.getOptionChildNo2());
+		vo.setStock(dto.getStock());
+		
+		return vo;
+	}
 }

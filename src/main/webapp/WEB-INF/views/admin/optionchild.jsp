@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -12,8 +13,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <title>Shop Homepage - Start Bootstrap Template</title>
-<script
-	src="${pageContext.servletContext.contextPath }/assets/js/jquery/jquery.js"></script>
+<script src="${pageContext.servletContext.contextPath }/assets/js/jquery/jquery.js" ></script>
 <!-- Bootstrap core CSS -->
 <link
 	href="${pageContext.servletContext.contextPath }/assets/bootstrap/css/bootstrap.min.css"
@@ -69,37 +69,30 @@ textarea#gdsDes {
 
 			<div class="col-lg-9">
 				<div id="container_box">
-					<h2>상품 목록</h2>
-					<c:if test="${result == 'success' }">
-						등록 성공
-					</c:if>
-					<c:if test="${result == 'fail' }">
-						등록 실패
-					</c:if>
+					<h2>${vo.name }</h2>
 				</div>
-
+				<form:form id="form" method="post" action="/admin/optionchild" modelAttribute="optionChildForm" >
+					<c:forEach var="optionChild" items="${optionChildForm.optionChilds }" varStatus="status">
+						<div class="inputArea">
+							<label for="name">옵션값</label>
+							<form:input path="optionChilds[${status.index}].name" name="name" id="name" value="${optionChild.name }" />
+							<form:hidden path="optionChilds[${status.index}].optionParentNo" name="optionParentNo" id="optionParentNo" value="${vo.no }" />
+						</div>
+					</c:forEach>
+					
+					<input type="submit" value="저장" />
+				</form:form>
+				
 				<table>
 					<thead>
 						<tr>
-							<th>번호</th>
-							<th>종류</th>
-							<th>이름</th>
-							<th>가격</th>
-							<th>설명</th>
-							<th>등록날짜</th>
-							<th>옵션관리</th>
+							<th>옵션 값 목록</th>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${list }" var="list">
+						<c:forEach items="${optionChildList }" var="list">
 							<tr>
-								<td>${list.no }</td>
-								<td>${list.type }</td>
-								<td><a href="${pageContext.servletContext.contextPath }/admin/product/${list.no }">${list.name }</a></td>
-								<td>${list.price }</td>
-								<td>${list.explanation }</td>
-								<td>${list.regDate }</td>
-								<td><a href="${pageContext.servletContext.contextPath }/admin/optiondetail/${list.no }">+</a></td>
+								<td>${list.name }</td>
 							</tr>
 						</c:forEach>
 					</tbody>
