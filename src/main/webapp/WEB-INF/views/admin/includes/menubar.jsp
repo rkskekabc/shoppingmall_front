@@ -24,7 +24,7 @@
 				href="${pageContext.servletContext.contextPath }/admin/product/add">
 					<i class="fas fa-fw fa-chart-area"></i> <span>상품 등록</span>
 			</a></li>
-			<li class="nav-item"><a class="nav-link" href="tables.html">
+			<li class="nav-item"><a class="nav-link" href="${pageContext.servletContext.contextPath }/admin/member">
 					<i class="fas fa-fw fa-table"></i> <span>회원 목록</span>
 			</a></li>
 		</c:when>
@@ -45,7 +45,7 @@
 				href="${pageContext.servletContext.contextPath }/admin/product/add">
 					<i class="fas fa-fw fa-chart-area"></i> <span>상품 등록</span>
 			</a></li>
-			<li class="nav-item"><a class="nav-link" href="tables.html">
+			<li class="nav-item"><a class="nav-link" href="${pageContext.servletContext.contextPath }/admin/member">
 					<i class="fas fa-fw fa-table"></i> <span>회원 목록</span>
 			</a></li>
 		</c:when>
@@ -66,7 +66,7 @@
 				href="${pageContext.servletContext.contextPath }/admin/product/add">
 					<i class="fas fa-fw fa-chart-area"></i> <span>상품 등록</span>
 			</a></li>
-			<li class="nav-item"><a class="nav-link" href="tables.html">
+			<li class="nav-item"><a class="nav-link" href="${pageContext.servletContext.contextPath }/admin/member">
 					<i class="fas fa-fw fa-table"></i> <span>회원 목록</span>
 			</a></li>
 		</c:when>
@@ -87,7 +87,7 @@
 				href="${pageContext.servletContext.contextPath }/admin/product/add">
 					<i class="fas fa-fw fa-chart-area"></i> <span>상품 등록</span>
 			</a></li>
-			<li class="nav-item"><a class="nav-link" href="tables.html">
+			<li class="nav-item"><a class="nav-link" href="${pageContext.servletContext.contextPath }/admin/member">
 					<i class="fas fa-fw fa-table"></i> <span>회원 목록</span>
 			</a></li>
 		</c:when>
@@ -108,7 +108,7 @@
 				href="${pageContext.servletContext.contextPath }/admin/product/add">
 					<i class="fas fa-fw fa-chart-area"></i> <span>상품 등록</span>
 			</a></li>
-			<li class="nav-item active"><a class="nav-link" href="tables.html">
+			<li class="nav-item active"><a class="nav-link" href="${pageContext.servletContext.contextPath }/admin/member">
 					<i class="fas fa-fw fa-table"></i> <span>회원 목록</span>
 			</a></li>
 		</c:when>

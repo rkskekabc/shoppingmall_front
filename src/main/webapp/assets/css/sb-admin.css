@@ -10912,3 +10912,13 @@ body.sidebar-toggled footer.sticky-footer {
     width: calc(100% - 90px);
   }
 }
+
+.inputArea {
+	margin: 10px 0;
+}
+
+label { display:inline-block; width:100px; padding:5px; }
+
+label[for='explanation'] {
+	display: block;
+}

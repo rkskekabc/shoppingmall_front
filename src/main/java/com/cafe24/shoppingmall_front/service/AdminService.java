@@ -16,6 +16,7 @@ import com.cafe24.shoppingmall_front.dto.OptionDetailInfoDto;
 import com.cafe24.shoppingmall_front.dto.OptionDetailInfoDtoForm;
 import com.cafe24.shoppingmall_front.dto.OptionParentForm;
 import com.cafe24.shoppingmall_front.vo.CategoryVo;
+import com.cafe24.shoppingmall_front.vo.MemberVo;
 import com.cafe24.shoppingmall_front.vo.OptionChildVo;
 import com.cafe24.shoppingmall_front.vo.OptionDetailVo;
 import com.cafe24.shoppingmall_front.vo.OptionParentVo;
@@ -201,6 +202,13 @@ public class AdminService {
 		}
 	}
 
+	public List<MemberVo> getMemberList() {
+		JSONResultMemberList result = restTemplate.getForObject(BASE_URL + "/member", JSONResultMemberList.class);
+		List<MemberVo> list = result.getData();
+		
+		return list;
+	}
+
 	private static class JSONResultLong extends JSONResult<Long> {
 	}
 	
@@ -226,5 +234,8 @@ public class AdminService {
 	}
 	
 	private static class JSONResultOptionDetailInfoDtoList extends JSONResult<List<OptionDetailInfoDto>> {
+	}
+	
+	private static class JSONResultMemberList extends JSONResult<List<MemberVo>> {
 	}
 }

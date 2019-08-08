@@ -146,4 +146,10 @@ public class AdminController {
 	public String insertOptionDetail(@ModelAttribute("optionDetailInfoDtoForm") OptionDetailInfoDtoForm optionDetailInfoDtoForm) {
 		return "redirect:/admin/product?result=" + adminService.insertOptionDetail(optionDetailInfoDtoForm.getOptionDetailInfoDtos());
 	}
+	
+	@GetMapping("/member")
+	public String memberList(Model model) {
+		model.addAttribute("list", adminService.getMemberList());
+		return "admin/memberlist";
+	}
 }
