@@ -26,11 +26,11 @@
 		<div class="row">
 
 			<div class="col-lg-3">
-				<h1 class="my-4">PJMall</h1>
+				<h1 class="my-4">Shoppingmall</h1>
 				<div class="list-group">
-					<a href="#" class="list-group-item">Category 1</a> <a href="#"
-						class="list-group-item">Category 2</a> <a href="#"
-						class="list-group-item">Category 3</a>
+					<a href="#" class="list-group-item">상의</a> <a href="#"
+						class="list-group-item">하의</a> <a href="#"
+						class="list-group-item">신발</a>
 				</div>
 			</div>
 			<!-- /.col-lg-3 -->
@@ -46,15 +46,15 @@
 					</ol>
 					<div class="carousel-inner" role="listbox">
 						<div class="carousel-item active">
-							<img class="d-block img-fluid" src="http://placehold.it/900x350"
+							<img class="d-block img-fluid" src="/assets/thumbnail/shopevent1.jpg"
 								alt="First slide">
 						</div>
 						<div class="carousel-item">
-							<img class="d-block img-fluid" src="http://placehold.it/900x350"
+							<img class="d-block img-fluid" src="/assets/thumbnail/shopevent2.png"
 								alt="Second slide">
 						</div>
 						<div class="carousel-item">
-							<img class="d-block img-fluid" src="http://placehold.it/900x350"
+							<img class="d-block img-fluid" src="/assets/thumbnail/shopevent3.jpg"
 								alt="Third slide">
 						</div>
 					</div>
@@ -70,18 +70,25 @@
 				</div>
 
 				<div class="row">
-					<c:forEach var="index" begin="0" end="10" step="1">
+					<c:forEach items="${productlist }" var="list">
 						<div class="col-lg-4 col-md-6 mb-4">
 							<div class="card h-100">
-								<a href="#"><img class="card-img-top"
-									src="http://placehold.it/700x400" alt=""></a>
+								<c:choose>
+									<c:when test="${not empty list.thumbnail}">
+										<a href="#"><img class="card-img-top"
+											src="${list.thumbnail }" alt=""></a>
+									</c:when>
+									<c:otherwise>
+										<a href="#"><img class="card-img-top"
+											src="http://placehold.it/700x400" alt=""></a>
+									</c:otherwise>
+								</c:choose>
 								<div class="card-body">
 									<h4 class="card-title">
-										<a href="${pageContext.servletContext.contextPath }/goods/${index }">Item One</a>
+										<a href="${pageContext.servletContext.contextPath }/goods/${list.no }">${list.name }</a>
 									</h4>
-									<h5>$24.99</h5>
-									<p class="card-text">Lorem ipsum dolor sit amet, consectetur
-										adipisicing elit. Amet numquam aspernatur!</p>
+									<h5>&#8361; ${list.price }</h5>
+									<p class="card-text">${list.explanation }</p>
 								</div>
 								<div class="card-footer">
 									<small class="text-muted">&#9733; &#9733; &#9733;

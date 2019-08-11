@@ -17,6 +17,7 @@ import com.cafe24.shoppingmall_front.dto.OptionChildForm;
 import com.cafe24.shoppingmall_front.dto.OptionDetailInfoDto;
 import com.cafe24.shoppingmall_front.dto.OptionDetailInfoDtoForm;
 import com.cafe24.shoppingmall_front.dto.OptionParentForm;
+import com.cafe24.shoppingmall_front.dto.ProductWithFileDto;
 import com.cafe24.shoppingmall_front.service.AdminService;
 import com.cafe24.shoppingmall_front.vo.CategoryVo;
 import com.cafe24.shoppingmall_front.vo.OptionChildVo;
@@ -55,8 +56,8 @@ public class AdminController {
 	}
 	
 	@PostMapping("/product")
-	public String insertProduct(@ModelAttribute ProductVo vo) {
-		return "redirect:/admin?result=" + adminService.insertProduct(vo);
+	public String insertProduct(@ModelAttribute ProductWithFileDto dto) {
+		return "redirect:/admin?result=" + adminService.insertProduct(dto);
 	}
 	
 	@GetMapping("/category")
@@ -75,10 +76,12 @@ public class AdminController {
 		CategoryForm categoryForm = adminService.getCategorySet();
 		CategoryVo vo = adminService.getCategoryByNo(parentNo);
 		List<CategoryVo> categoryList = adminService.getCategory();
+		List<CategoryVo> childList = adminService.getChildCategoryByParent(parentNo);
 		
 		model.addAttribute("vo", vo);
 		model.addAttribute("categoryForm", categoryForm);
 		model.addAttribute("categoryList", categoryList);
+		model.addAttribute("childList", childList);
 		return "admin/childcategory";
 	}
 	

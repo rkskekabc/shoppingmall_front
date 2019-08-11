@@ -1,11 +1,15 @@
 package com.cafe24.shoppingmall_front.vo;
 
+import com.cafe24.shoppingmall_front.dto.ProductWithFileDto;
+
 public class ProductVo {
 	private Long no;
 	private String type;
 	private String name;
 	private int price;
 	private String explanation;
+	private String thumbnail;
+	private String detail;
 	private String regDate;
 	public Long getNo() {
 		return no;
@@ -37,6 +41,18 @@ public class ProductVo {
 	public void setExplanation(String explanation) {
 		this.explanation = explanation;
 	}
+	public String getThumbnail() {
+		return thumbnail;
+	}
+	public void setThumbnail(String thumbnail) {
+		this.thumbnail = thumbnail;
+	}
+	public String getDetail() {
+		return detail;
+	}
+	public void setDetail(String detail) {
+		this.detail = detail;
+	}
 	public String getRegDate() {
 		return regDate;
 	}
@@ -46,7 +62,19 @@ public class ProductVo {
 	@Override
 	public String toString() {
 		return "ProductVo [no=" + no + ", type=" + type + ", name=" + name + ", price=" + price + ", explanation="
-				+ explanation + ", regDate=" + regDate + "]";
+				+ explanation + ", thumbnail=" + thumbnail + ", detail=" + detail + ", regDate=" + regDate + "]";
 	}
 	
+	public static ProductVo of(ProductWithFileDto dto) {
+		ProductVo vo = new ProductVo();
+		vo.setNo(dto.getNo());
+		vo.setType(dto.getType());
+		vo.setName(dto.getName());
+		vo.setPrice(dto.getPrice());
+		vo.setExplanation(dto.getExplanation());
+		vo.setThumbnail(dto.getThumbnailUrl());
+		vo.setDetail(dto.getDetail());
+		
+		return vo;
+	}
 }

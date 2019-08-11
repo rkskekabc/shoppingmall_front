@@ -50,13 +50,17 @@
           <div class="card-body">
             <div class="table-responsive">
 				<c:if test="${result == 'success' }">
-					등록 성공
+					<div class="alert alert-success" role="alert">
+					  등록 성공
+					</div>
 				</c:if>
 				<c:if test="${result == 'fail' }">
-					등록 실패
+					<div class="alert alert-danger" role="alert">
+					  등록 실패
+					</div>
 				</c:if>
 				
-				<form:form id="form" method="post" action="/admin/product">
+				<form id="form" method="post" action="/admin/product?${_csrf.parameterName}=${_csrf.token}" enctype="multipart/form-data">
 					<div class="inputArea">
 						<label for="type">상품종류</label>
 						<input type="text" id="type" name="type" />
@@ -73,6 +77,11 @@
 					</div>
 
 					<div class="inputArea">
+						<label for="price">썸네일</label>
+						<input type="file" id="thumbnail" name="thumbnail" />
+					</div>
+
+					<div class="inputArea">
 						<label for="explanation">상품설명</label>
 						<textarea rows="5" cols="50" id="explanation" name="explanation"></textarea>
 					</div>
@@ -80,7 +89,7 @@
 					<div class="inputArea">
 						<input type="submit" id="register_Btn" class="btn btn-primary" value="등록" />
 					</div>
-				</form:form>
+				</form>
             </div>
           </div>
           <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>

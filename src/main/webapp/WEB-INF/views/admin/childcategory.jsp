@@ -50,10 +50,14 @@
           <div class="card-body">
             <div class="table-responsive">
 				<c:if test="${result == 'success' }">
-					등록 성공
+					<div class="alert alert-success" role="alert">
+					  등록 성공
+					</div>
 				</c:if>
 				<c:if test="${result == 'fail' }">
-					등록 실패
+					<div class="alert alert-danger" role="alert">
+					  등록 실패
+					</div>
 				</c:if>
 				
 				<form:form id="form" method="post" action="/admin/category" modelAttribute="categoryForm" >
@@ -75,6 +79,22 @@
 					
 					<input type="submit" value="저장" />
 				</form:form>
+				
+				<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="margin-top: 100px">
+					
+					<thead>
+						<tr>
+							<th>하위 카테고리 목록</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach items="${childList }" var="list">
+							<tr>
+								<td>${list.name }</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
             </div>
           </div>
           <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>

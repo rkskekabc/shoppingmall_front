@@ -49,10 +49,14 @@
           <div class="card-body">
             <div class="table-responsive">
 				<c:if test="${result == 'success' }">
-					등록 성공
+					<div class="alert alert-success" role="alert">
+					  등록 성공
+					</div>
 				</c:if>
 				<c:if test="${result == 'fail' }">
-					등록 실패
+					<div class="alert alert-danger" role="alert">
+					  등록 실패
+					</div>
 				</c:if>
               <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 					<thead>
