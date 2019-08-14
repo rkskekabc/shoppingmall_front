@@ -1,6 +1,5 @@
 package com.cafe24.shoppingmall_front.service;
 
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -21,6 +20,7 @@ import com.cafe24.shoppingmall_front.dto.OptionChildForm;
 import com.cafe24.shoppingmall_front.dto.OptionDetailInfoDto;
 import com.cafe24.shoppingmall_front.dto.OptionDetailInfoDtoForm;
 import com.cafe24.shoppingmall_front.dto.OptionParentForm;
+import com.cafe24.shoppingmall_front.dto.OrderHistoryDto;
 import com.cafe24.shoppingmall_front.dto.ProductWithFileDto;
 import com.cafe24.shoppingmall_front.vo.CategoryVo;
 import com.cafe24.shoppingmall_front.vo.MemberVo;
@@ -229,6 +229,13 @@ public class AdminService {
 		return list;
 	}
 
+	public List<OrderHistoryDto> getOrderList() {
+		JSONResultOrderHistoryDtoList result = restTemplate.getForObject(BASE_URL + "/order", JSONResultOrderHistoryDtoList.class);
+		List<OrderHistoryDto> list = result.getData();
+		
+		return list;
+	}
+
 	
 	
 	
@@ -313,5 +320,8 @@ public class AdminService {
 	}
 	
 	private static class JSONResultMemberList extends JSONResult<List<MemberVo>> {
+	}
+	
+	private static class JSONResultOrderHistoryDtoList extends JSONResult<List<OrderHistoryDto>> {
 	}
 }

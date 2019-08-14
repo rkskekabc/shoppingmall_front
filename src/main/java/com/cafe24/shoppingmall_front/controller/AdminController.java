@@ -155,4 +155,10 @@ public class AdminController {
 		model.addAttribute("list", adminService.getMemberList());
 		return "admin/memberlist";
 	}
+	
+	@GetMapping("/order")
+	public String orderList(Model model) {
+		model.addAttribute("list", adminService.getOrderList());
+		return "admin/orderlist";
+	}
 }

@@ -108,5 +108,13 @@ public class OptionDetailInfoDto {
 				+ ", optionChildName2=" + optionChildName2 + ", optionParentNo2=" + optionParentNo2
 				+ ", optionParentName2=" + optionParentName2 + ", stock=" + stock + "]";
 	}
-	
+
+	public String getInfo() {
+		StringBuilder sb = new StringBuilder("");
+		
+		String str = sb.append(optionParentName1).append(":").append(optionChildName1).append("/")
+						.append(optionParentName2).append(":").append(optionChildName2).append("/")
+						.append("재고:").append(stock).toString();
+		return str;
+	}
 }

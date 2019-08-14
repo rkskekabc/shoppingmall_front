@@ -27,6 +27,9 @@
 			<li class="nav-item"><a class="nav-link" href="${pageContext.servletContext.contextPath }/admin/member">
 					<i class="fas fa-fw fa-table"></i> <span>회원 목록</span>
 			</a></li>
+			<li class="nav-item"><a class="nav-link" href="${pageContext.servletContext.contextPath }/admin/order">
+					<i class="fas fa-fw fa-table"></i> <span>주문 이력</span>
+			</a></li>
 		</c:when>
 		<c:when test='${param.active =="option" }'>
 			<li class="nav-item"><a class="nav-link"
@@ -47,6 +50,9 @@
 			</a></li>
 			<li class="nav-item"><a class="nav-link" href="${pageContext.servletContext.contextPath }/admin/member">
 					<i class="fas fa-fw fa-table"></i> <span>회원 목록</span>
+			</a></li>
+			<li class="nav-item"><a class="nav-link" href="${pageContext.servletContext.contextPath }/admin/order">
+					<i class="fas fa-fw fa-table"></i> <span>주문 이력</span>
 			</a></li>
 		</c:when>
 		<c:when test='${param.active =="productlist" }'>
@@ -69,6 +75,9 @@
 			<li class="nav-item"><a class="nav-link" href="${pageContext.servletContext.contextPath }/admin/member">
 					<i class="fas fa-fw fa-table"></i> <span>회원 목록</span>
 			</a></li>
+			<li class="nav-item"><a class="nav-link" href="${pageContext.servletContext.contextPath }/admin/order">
+					<i class="fas fa-fw fa-table"></i> <span>주문 이력</span>
+			</a></li>
 		</c:when>
 		<c:when test='${param.active =="productadd" }'>
 			<li class="nav-item"><a class="nav-link"
@@ -90,6 +99,9 @@
 			<li class="nav-item"><a class="nav-link" href="${pageContext.servletContext.contextPath }/admin/member">
 					<i class="fas fa-fw fa-table"></i> <span>회원 목록</span>
 			</a></li>
+			<li class="nav-item"><a class="nav-link" href="${pageContext.servletContext.contextPath }/admin/order">
+					<i class="fas fa-fw fa-table"></i> <span>주문 이력</span>
+			</a></li>
 		</c:when>
 		<c:when test='${param.active =="member" }'>
 			<li class="nav-item"><a class="nav-link"
@@ -110,6 +122,33 @@
 			</a></li>
 			<li class="nav-item active"><a class="nav-link" href="${pageContext.servletContext.contextPath }/admin/member">
 					<i class="fas fa-fw fa-table"></i> <span>회원 목록</span>
+			</a></li>
+			<li class="nav-item"><a class="nav-link" href="${pageContext.servletContext.contextPath }/admin/order">
+					<i class="fas fa-fw fa-table"></i> <span>주문 이력</span>
+			</a></li>
+		</c:when>
+		<c:when test='${param.active =="order" }'>
+			<li class="nav-item"><a class="nav-link"
+				href="${pageContext.servletContext.contextPath }/admin/category">
+					<i class="fas fa-fw fa-tachometer-alt"></i> <span>카테고리 관리</span>
+			</a></li>
+			<li class="nav-item"><a class="nav-link"
+				href="${pageContext.servletContext.contextPath }/admin/productoption">
+					<i class="fas fa-fw fa-folder"></i> <span>옵션 관리</span>
+			</a></li>
+			<li class="nav-item"><a class="nav-link"
+				href="${pageContext.servletContext.contextPath }/admin/product">
+					<i class="fas fa-fw fa-folder"></i> <span>상품 목록</span>
+			</a></li>
+			<li class="nav-item"><a class="nav-link"
+				href="${pageContext.servletContext.contextPath }/admin/product/add">
+					<i class="fas fa-fw fa-chart-area"></i> <span>상품 등록</span>
+			</a></li>
+			<li class="nav-item"><a class="nav-link" href="${pageContext.servletContext.contextPath }/admin/member">
+					<i class="fas fa-fw fa-table"></i> <span>회원 목록</span>
+			</a></li>
+			<li class="nav-item active"><a class="nav-link" href="${pageContext.servletContext.contextPath }/admin/order">
+					<i class="fas fa-fw fa-table"></i> <span>주문 이력</span>
 			</a></li>
 		</c:when>
 	</c:choose>

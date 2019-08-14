@@ -12,10 +12,18 @@ import com.cafe24.shoppingmall_front.vo.MemberVo;
 public class SecurityMember extends User {
 	private static final long serialVersionUID = -416077208935285641L;
 	private Long no;
-	
+
 	public SecurityMember(MemberVo vo) {
 		super(vo.getId(), vo.getPassword(), makeGrantedAuthority(vo.getType()));
 		this.no = vo.getNo();
+	}
+	
+	public Long getNo() {
+		return no;
+	}
+
+	public void setNo(Long no) {
+		this.no = no;
 	}
 	
 	private static List<GrantedAuthority> makeGrantedAuthority(String role){

@@ -38,6 +38,9 @@
 						<li class="nav-item">
 							<a class="nav-link" href="${pageContext.servletContext.contextPath }/main">홈</a>
 						</li>
+						<sec:authorize access="isAuthenticated()">
+							<a class="nav-link" href="/member/cart/${user.no }">장바구니</a>
+						</sec:authorize>
 						<sec:authorize access="isAnonymous()">
 							<li class="nav-item active">
 								<a class="nav-link" href="${pageContext.servletContext.contextPath }/member/login">로그인<span class="sr-only">(current)</span></a>
@@ -67,6 +70,9 @@
 						<li class="nav-item">
 							<a class="nav-link" href="${pageContext.servletContext.contextPath }/main">홈</a>
 						</li>
+						<sec:authorize access="isAuthenticated()">
+							<a class="nav-link" href="/member/cart/${user.no }">장바구니</a>
+						</sec:authorize>
 						<sec:authorize access="isAnonymous()">
 							<li class="nav-item">
 								<a class="nav-link" href="${pageContext.servletContext.contextPath }/member/login">로그인</a>
@@ -96,6 +102,9 @@
 						<li class="nav-item">
 							<a class="nav-link" href="${pageContext.servletContext.contextPath }/main">홈</a>
 						</li>
+						<sec:authorize access="isAuthenticated()">
+							<a class="nav-link" href="/member/cart/${user.no }">장바구니</a>
+						</sec:authorize>
 						<sec:authorize access="isAnonymous()">
 							<li class="nav-item">
 								<a class="nav-link" href="${pageContext.servletContext.contextPath }/member/login">로그인</a>
@@ -106,6 +115,40 @@
 						</sec:authorize>
 						<li class="nav-item active">
 							<a class="nav-link" href="${pageContext.servletContext.contextPath }/cs">고객센터<span class="sr-only">(current)</span></a>
+						</li>
+						<sec:authorize access="isAuthenticated()">
+							<a class="nav-link" href="javascript:formSubmit()">로그아웃</a>
+						</sec:authorize>
+					</c:when>	
+					<c:when test='${param.active == "cart" }'>
+						<sec:authorize access="isAuthenticated()">
+							<li class="nav-item">
+								<a class="nav-link" href="${pageContext.servletContext.contextPath }/main">${user.username }님 안녕하세요.</a>
+							</li>
+						</sec:authorize>
+						<sec:authorize access="hasRole('ROLE_ADMIN')">
+							<li class="nav-item">
+								<a class="nav-link" href="${pageContext.servletContext.contextPath }/admin">관리자 화면</a>
+							</li>
+						</sec:authorize>
+						<li class="nav-item">
+							<a class="nav-link" href="${pageContext.servletContext.contextPath }/main">홈</a>
+						</li>
+						<sec:authorize access="isAuthenticated()">
+							<li class="nav-item active">
+								<a class="nav-link" href="/member/cart/${user.no }">장바구니<span class="sr-only">(current)</span></a>
+							</li>
+						</sec:authorize>
+						<sec:authorize access="isAnonymous()">
+							<li class="nav-item">
+								<a class="nav-link" href="${pageContext.servletContext.contextPath }/member/login">로그인</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="${pageContext.servletContext.contextPath }/member/join">회원가입</a>
+							</li>
+						</sec:authorize>
+						<li class="nav-item">
+							<a class="nav-link" href="${pageContext.servletContext.contextPath }/cs">고객센터</a>
 						</li>
 						<sec:authorize access="isAuthenticated()">
 							<a class="nav-link" href="javascript:formSubmit()">로그아웃</a>
@@ -125,6 +168,9 @@
 						<li class="nav-item active">
 							<a class="nav-link" href="${pageContext.servletContext.contextPath }/main">홈<span class="sr-only">(current)</span></a>
 						</li>
+						<sec:authorize access="isAuthenticated()">
+							<a class="nav-link" href="/member/cart/${user.no }">장바구니</a>
+						</sec:authorize>
 						<sec:authorize access="isAnonymous()">
 							<li class="nav-item">
 								<a class="nav-link" href="${pageContext.servletContext.contextPath }/member/login">로그인</a>

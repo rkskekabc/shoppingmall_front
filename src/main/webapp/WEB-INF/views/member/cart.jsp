@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>  
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
@@ -20,7 +20,7 @@
 <body>
 	<!-- Navigation -->
 	<c:import url='/WEB-INF/views/includes/navigation.jsp'>
-		<c:param name="active" value="shopping" />
+		<c:param name="active" value="cart" />
 	</c:import>
 	<!-- /.Navigation -->
 
@@ -40,43 +40,39 @@
 			<!-- /.col-lg-3 -->
 
 			<div class="col-lg-9">
-
-				<div class="card mt-4">
-					<c:choose>
-						<c:when test="${not empty goods.thumbnail}">
-							<img class="card-img-top img-fluid"
-								src="${goods.thumbnail }" alt="">
-						</c:when>
-						<c:otherwise>
-							<img class="card-img-top img-fluid"
-								src="http://placehold.it/900x400" alt="">
-						</c:otherwise>
-					</c:choose>
-					<div class="card-body">
-						<h3 class="card-title">${goods.name }</h3>
-						<h4>&#8361; ${goods.price }</h4>
-						<form:form id="form" action="/goods/cart" method="post">
-							<input type="hidden" name="memberNo" value="${member.no }" />
-							<select name="optionDetailNo">
-								<c:forEach items="${detail }" var="var">
-									<option value="${var.no }">${var.info }</option>
-								</c:forEach>
-							</select>
-							<br/><br/>
-							수량 : <input type="text" name="num" />
-							<input type="hidden" name="price" value="${goods.price }" />
-							<input type="submit" value="장바구니에 담기" />
-						</form:form>
-						<p class="card-text">
-							${goods.explanation }
-						</p>
-						<span class="text-warning">&#9733; &#9733; &#9733; &#9733;
-							&#9734;</span> 4.0 stars
-					</div>
+				<h2 class="my-4">장바구니 목록</h2>
+				<table class="table">
+					<thead>
+						<th>상품명</th>
+						<th>옵션</th>
+						<th>수량</th>
+						<th>가격</th>
+					</thead>
+					<c:forEach items="${list }" var="item">
+						<tbody>
+							<td>
+								${item.dto.productName }
+							</td>
+							<td>
+								${item.dto.optionParentName1 }:${item.dto.optionChildName1 } / ${item.dto.optionParentName2 }:${item.dto.optionChildName2 }
+							</td>
+							<td>
+								${item.cart.num }
+							</td>
+							<td>
+								${item.cart.price }
+							</td>
+						</tbody>
+					</c:forEach>
+				</table>
+				<br/>
+				<div style="text-align: center;">
+					<form:form id="form" method="post" action="/member/order">
+						<input type="hidden" name="memberNo" value="${member.no }" />
+						<input type="submit" value="주문하기" />
+					</form:form>
 				</div>
-				<br/>
-				<br/>
-
+				<br/><br/><br/><br/>
 			</div>
 			<!-- /.col-lg-9 -->
 
